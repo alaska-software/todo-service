@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?> 
+
+<asset
+   id="xpp-unit"
+   title="Xbase++ unit testing framework"
+   version="0.92"
+   locale="*"
+   release="20200313"
+   hidden="yes"
+   size="*">
+
+<description>
+Just a small unit testing framework for Xbase++. Not ready for final release but already helpful.
+</description>    
+
+<author name="Alaska Software" />
+
+<copyright>Copyright 2020, Alaska Software</copyright>
+
+<license file=".\xpp-unit-0.92.license"/>
+
+<filterdata>
+      <category>Testing</category>
+      <keyword>unit-test</keyword>
+      <keyword>integration-test</keyword>
+      <keyword>automated-testing</keyword>
+</filterdata>
+
+<dependencies/>
+
+<install>
+    <copy src="*"/>
+</install>
+
+<deinstall>
+    <delete src="*"/>
+</deinstall>
+
+ <image>
+  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADEAAAArCAYAAADR0WDhAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTCtCgrAAAAEIklEQVRoQ+WXXUgUURTHtUyph/Ihkwpqt3Zdbdev1SJ8KCjswzctiAyyQs2P1N18UeiDgpIe6qEo0DWrh9J11KCCUqk3xSApA7WnoI+3CowgCj9O51ycYZ3O7N6Zp8YGfszOf2bOuf+999x7Jw4AbA8r2g1WtBusaDdY0W6wot1gRbvBimZZnuKEvGCfwFenQLB9GGX+CIaGwVsThvzgQ8HyFAfJbFxZWNEsiSvXgKv4LGSWt0mZ8NUqkFUeAnfxOaB38WDjysKKVtm4p1bahKPwFF2ycczCilZxFgWlTTj3B+mSjWMWVrTKojDh2B9YBCb2NcibwGfxYOOYhRWt8v+YaJs3sfcfNeEsahQmGjtG8JI/GttHwFejwKai03TJxjELK1olo/QaZFR1Q+jpOMzOzsL09PQCSAsNjENGdTekl17FV/g4ZmFFK8QvXQb+hl5wVXTB+MdvMDc3JxodCWl0z1XeCX7cosQvTcBX+XhmYEUrOHCM56CJ7Poe1oAK3cuuVyAn0AtUQ/o4VmBFs9D+Jy/QB2mVXdAxMBnTxO3+CfBUh8WGMXFVKobg48rCimbxHr0OOfW9sBWNRDMQyTbcwVLPecuuYwg+riysaIZk13atFp6/+SRt4sXYZ3BXhrE2eoFi6OOagRXNkFvXDZl1PXDg8oC0gZmZGXwV4GDLIGRiDfkbFLpk48vAirKsLzgieiENp9WpH7+ECRnICB3ff/yG9GoF/Fjk6wpKSWLzxIIVZYiLXyK+zGg22tn0CJrujkAAtxRStA6JVb353kvY0fxYzFRU5BRTn0cGVpTBsS8gTOTidElGvDXdC9iCC5ob64RmLP09+jyllZ1QDRBWd7asGIuEFavEMFJN0O9IcskUDpML919BoG0I0irCQtOewd9qw/VQbH2+WLBiLNwl50VjOBPUWJp1JuZXbeLO4DtIr8KZSH0uigmKrc8XC1aMRlLyOrGwUWONTNAwUQuYzl+mfsJm2mpImCAohz5vNFgxGp5DV+Ybq2gmiIyqLqwDGjYK9gTunz581aZUWsXT8b76LJmg9cEIz+ErmIrPz8GKRtA/RA1XG09n6pUsXK1D/e+gRXkNHpxuSfPV9MDFB6PiI8iDw0t9L/LdaCQlr8WUfDv0sKIRG3ZXab2gntMqO8VKrf7rl8KjWo/QmWYj+h2J+q4RdH/DrpOYkm+HHlY0wnvspviXI4eTG028ff9VK+LQs0kcWhFFzBGjJghv2Q1MybdDDysa4TvR+peJLNx2FJ55AmNohPZD2bgFWTCdckiY8B2/hSn5duhhRSNS80u0hkTOTmSEeoSGFn0rqMPCiFiFTaTmF2NKvh16WDEaq727RVfnnOrSitAsZITT/fW4muO2nnLo80aDFe0GK9oNVrQbrGg3WNFusKK9gLg/dJsHSWvaNoAAAAAASUVORK5CYII=
+ </image>
+
+</asset>

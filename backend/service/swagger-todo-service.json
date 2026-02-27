@@ -1,0 +1,507 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Todo-Service",
+        "description": "The backend part of the samples MyTodoViewer/MyTodoEditor",
+        "version": "2.1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:9100/",
+            "description": "Local development"
+        },
+        {
+            "url": "http://10.0.2.2:9100/",
+            "description": "Android emulator access to host machine"
+        }
+    ],
+    "paths": {
+        "/todoitems": {
+            "get": {
+                "summary": "Returns todo items",
+                "operationId": "getTodoItems",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/envelopedExtendedTodoItems"
+                                },
+                                "examples": {
+                                    "example": {
+                                        "value": {
+                                            "result": {
+                                                "data": [
+                                                    {
+                                                        "id": 1,
+                                                        "created": "2023-03-02T00:00:03",
+                                                        "text": "Buy a birthday present for Alice",
+                                                        "changed": "2024-08-22T09:29:24",
+                                                        "state": "IP",
+                                                        "priority": "AA"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "created": "2022-01-02T05:00:03",
+                                                        "text": "hä at later point in time",
+                                                        "changed": "2025-11-18T11:56:58",
+                                                        "state": "IP",
+                                                        "priority": "A+"
+                                                    }
+                                                ],
+                                                "dictionaries": {
+                                                    "states": [
+                                                        {
+                                                            "id": "NE",
+                                                            "name": "New"
+                                                        },
+                                                        {
+                                                            "id": "PE",
+                                                            "name": "Pending"
+                                                        },
+                                                        {
+                                                            "id": "IP",
+                                                            "name": "In Progress"
+                                                        },
+                                                        {
+                                                            "id": "DO",
+                                                            "name": "Done"
+                                                        }
+                                                    ],
+                                                    "priorities": [
+                                                        {
+                                                            "id": "A+",
+                                                            "name": "highest"
+                                                        },
+                                                        {
+                                                            "id": "AA",
+                                                            "name": "high"
+                                                        },
+                                                        {
+                                                            "id": "BB",
+                                                            "name": "middle"
+                                                        },
+                                                        {
+                                                            "id": "CC",
+                                                            "name": "low"
+                                                        },
+                                                        {
+                                                            "id": "C-",
+                                                            "name": "lowest"
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500InternalServerError"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Creates a new todo item and returns it",
+                "operationId": "createTodoItem",
+                "requestBody": {
+                    "description": "Todo item",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "todoItem": {
+                                        "$ref": "#/components/schemas/todoItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/envelopedTodoItem"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400BadRequest"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500InternalServerError"
+                    }
+                }
+            }
+        },
+        "/todoitems/{id}": {
+            "get": {
+                "summary": "Returns a single todo item by id",
+                "description": "If passed ID equals to 0, an empty nonexistent todo item is returned.",
+                "operationId": "getTodoItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Todo item id",
+                        "example": 12,
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/envelopedExtendedTodoItem"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500InternalServerError"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Updates an existing todo item and returns it",
+                "operationId": "updateTodoItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Todo item id",
+                        "example": "48",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Todo item",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "todoItem": {
+                                        "$ref": "#/components/schemas/todoItem"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/envelopedTodoItem"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500InternalServerError"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deletes a todo item by id and returns it",
+                "operationId": "deleteTodoItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "description": "Todo item id",
+                        "example": "2",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/envelopedTodoItem"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400BadRequest"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404NotFound"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/500InternalServerError"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "todoItem": {
+                "description": "Object representing a todo item",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Todo item ID",
+                        "example": 234
+                    },
+                    "created": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Creation date-time",
+                        "example": "2023-03-02T09:00:03",
+                        "maxLength": 19,
+                        "minLength": 19
+                    },
+                    "text": {
+                        "type": "string",
+                        "description": "Activity description",
+                        "example": "Do something",
+                        "maxLength": 256,
+                        "minLength": 3
+                    },
+                    "priority": {
+                        "type": "string",
+                        "description": "Priority id",
+                        "maxLength": 2,
+                        "example": "AA"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "State id",
+                        "maxLength": 2,
+                        "example": "IP"
+                    },
+                    "changed": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Date-time of last change",
+                        "example": "2023-03-05T09:00:00",
+                        "minLength": 19,
+                        "maxLength": 19
+                    }
+                },
+                "required": [
+                    "id",
+                    "created",
+                    "text",
+                    "state",
+                    "priority"
+                ]
+            },
+            "state": {
+                "description": "Object representing a state",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "IP"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "In Progress"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ]
+            },
+            "priority": {
+                "description": "Object representing a priority",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "AA"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "high"
+                    }
+                },
+                "required": [
+                    "id",
+                    "name"
+                ]
+            },
+            "extendedTodoItem": {
+                "description": "Todo item with its dictionaries",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "$ref": "#/components/schemas/todoItem"
+                    },
+                    "dictionaries": {
+                        "type": "object",
+                        "description": "Used dictionaries",
+                        "properties": {
+                            "states": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/state"
+                                }
+                            },
+                            "priorities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/priority"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "extendedTodoItems": {
+                "description": "Todo items with their dictionaries",
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/todoItem"
+                        }
+                    },
+                    "dictionaries": {
+                        "type": "object",
+                        "description": "Used dictionaries",
+                        "properties": {
+                            "states": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/state"
+                                }
+                            },
+                            "priorities": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/priority"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "envelopedTodoItem": {
+                "type": "object",
+                "description": "Todo item as envelope result-error. Used in POST/PUT/DELETE response body",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/todoItem"
+                    },
+                    "error": {
+                        "example": null
+                    }
+                }
+            },
+            "envelopedExtendedTodoItem": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/extendedTodoItem"
+                    },
+                    "error": {
+                        "example": null
+                    }
+                }
+            },
+            "envelopedExtendedTodoItems": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "$ref": "#/components/schemas/extendedTodoItems"
+                    },
+                    "error": {
+                        "example": null
+                    }
+                }
+            },
+            "errorResponse": {
+                "type": "object",
+                "properties": {
+                    "result": {
+                        "example": null
+                    },
+                    "error": {
+                        "type": "string",
+                        "description": "Error message",
+                        "example": "<specific error message>"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "400BadRequest": {
+                "description": "Bad request (e.g., missing/empty input data)",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/errorResponse"
+                        }
+                    }
+                }
+            },
+            "404NotFound": {
+                "description": "Required todo item not found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/errorResponse"
+                        }
+                    }
+                }
+            },
+            "500InternalServerError": {
+                "description": "Internal server error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/errorResponse"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

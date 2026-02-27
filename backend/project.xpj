@@ -1,0 +1,143 @@
+[PROJECT]
+    TARGET_DIR    = .\run
+    Version = 3.0
+    Project.xpj
+
+[Project.xpj]
+    service\todo-service.exe
+    business-logic\todo-manager.dll
+    unit-test\runner.exe
+    create-table.exe
+
+[service\todo-service.exe]
+    COMPILE              = xpp
+    COMPILE_FLAGS        = /wi /wl /wu /q /w
+    DEBUG                = yes
+    GUI                  = no
+    LINKER               = alink
+    LINK_FLAGS           = 
+    RC_COMPILE           = arc
+    RC_FLAGS             = 
+    INTERMEDIATE_DEBUG   = .debug
+    INTERMEDIATE_RELEASE = .release
+    POST_BUILD           = copy todo-service.exe.config ..\run
+    DEPENDS_ON           = business-logic\todo-manager.dll
+    DEPENDS_ON           = $(ASSETS_PATH)\configuration-manager@0.8
+    DEPENDS_ON           = $(ASSETS_PATH)\console-helper@0.11
+    DEPENDS_ON           = $(ASSETS_PATH)\microservice-core@0.14
+    DEPENDS_ON           = $(ASSETS_PATH)\rest-helper@0.11
+    DEPENDS_ON           = $(ASSETS_PATH)\worker-helper@0.4
+    RunParameter         = -exe
+    WorkingDir           = .\run
+// $START-AUTODEPEND
+    version.res
+    todo-edit-handler.obj
+    todo-service-main.obj
+    todo-service-microservice.obj
+// $STOP-AUTODEPEND
+    todo-edit-handler.prg
+    todo-service.exe.config
+    todo-service-main.prg
+    todo-service-microservice.prg
+    version.arc
+    ..\readme.md
+
+
+[business-logic\todo-manager.dll]
+    COMPILE              = xpp
+    COMPILE_FLAGS        = /DLL /q /wi /wl /wu /w
+    DEBUG                = yes
+    GUI                  = no
+    LINKER               = alink
+    LINK_FLAGS           = /dll
+    RC_COMPILE           = arc
+    RC_FLAGS             = 
+    INTERMEDIATE_DEBUG   = .debug
+    INTERMEDIATE_RELEASE = .release
+// $START-AUTODEPEND
+    helpers.obj
+    todo-data-factory.obj
+    todo-data-manager.obj
+    todo-item-priorities.obj
+    todo-item-states.obj
+    wa-container.obj
+// $STOP-AUTODEPEND
+    helpers.prg
+    todo-data-factory.prg
+    todo-data-manager.ch
+    todo-data-manager.prg
+    todo-item-priorities.prg
+    todo-item-states.prg
+    wa-container.prg
+
+[unit-test\runner.exe]
+    COMPILE              = xpp
+    COMPILE_FLAGS        = /wi /wl /wu /q /w
+    DEBUG                = yes
+    GUI                  = no
+    LINKER               = alink
+    LINK_FLAGS           = 
+    RC_COMPILE           = arc
+    RC_FLAGS             = 
+    INTERMEDIATE_DEBUG   = .debug
+    INTERMEDIATE_RELEASE = .release
+    TARGET_DIR           = .\.
+    RUNPARAMETER         = -n:testGetAllItems
+    DEPENDS_ON           = business-logic\todo-manager.dll
+// $START-AUTODEPEND
+    extern.ch
+    ..\.assets\xpp-unit\unit-test.ch
+    dac.ch
+    get.ch
+    prompt.ch
+    dll.ch
+    struct.ch
+    sql.ch
+    natmsg.ch
+    ..\.assets\xpp-unit\helpers.prg
+    ..\.assets\xpp-unit\listener.prg
+    ..\.assets\xpp-unit\runner.prg
+    ..\.assets\xpp-unit\unit-test.prg
+    class.ch
+    std.ch
+    memvar.ch
+    set.ch
+    collat.ch
+    test-loader.obj
+    TodoDataAccessTestGroup.obj
+// $STOP-AUTODEPEND
+    test-loader.prg
+    TodoDataAccessTestGroup.prg
+    TodoItemService.postman_collection.json
+
+[create-table.exe]
+    COMPILE              = xpp
+    COMPILE_FLAGS        = /wi /wl /wu /q /w
+    DEBUG                = yes
+    GUI                  = no
+    LINKER               = alink
+    LINK_FLAGS           = 
+    RC_COMPILE           = arc
+    RC_FLAGS             = 
+    INTERMEDIATE_DEBUG   = .debug
+    INTERMEDIATE_RELEASE = .release
+    DEPENDS_ON           = business-logic\todo-manager.dll
+    RunParameter         = -exe
+    WorkingDir           = .\run
+// $START-AUTODEPEND
+    dac.ch
+    collat.ch
+    common.ch
+    get.ch
+    prompt.ch
+    memvar.ch
+    set.ch
+    sql.ch
+    natmsg.ch
+    std.ch
+    create-table.obj
+// $STOP-AUTODEPEND
+    create-table.prg
+    
+
+
