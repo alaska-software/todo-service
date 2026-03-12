@@ -1,0 +1,42 @@
+{
+    "name": "my-todo-editor",
+    "version": "1.2.0",
+    "description": "Editing todo items",
+    "productName": "MyTodoEditor",
+    "author": "Alaska Software Inc.",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "postinstall": "quasar prepare",
+        "dev": "quasar dev",
+        "dev-android14": "quasar dev -m cordova -T android -e android14",
+        "dev-android15": "quasar dev -m cordova -T android -e android15",
+        "dev-android16": "quasar dev -m cordova -T android -e android16",
+        "build-android-debug": "quasar build -m cordova -T android --debug",
+        "adb:devices": "adb devices",
+        "adb:install": "adb install .\\dist\\cordova\\android\\apk\\debug\\app-debug.apk",
+        "adb:uninstall": "adb uninstall com.alaskasoftware.mobileapp.mytodoeditor",
+        "dev-ios": "quasar dev -m cordova -T ios",
+        "build-ios": "quasar build -m cordova -T ios",
+        "cordova:build-ios": "cordova build ios --buildFlag='DEVELOPMENT_TEAM=<DEVELOPMENT_TEAM_ID>'",
+        "cordova:run-ios-emulator": "cordova run --emulator ios --buildFlag='DEVELOPMENT_TEAM=<DEVELOPMENT_TEAM_ID>'",
+        "cordova:run-ios-device": "cordova run --device ios --buildFlag='DEVELOPMENT_TEAM=<DEVELOPMENT_TEAM_ID>'"
+    },
+    "dependencies": {
+        "@quasar/extras": "^1.16.4",
+        "axios": "^1.2.1",
+        "qs": "^6.14.0",
+        "quasar": "^2.16.0",
+        "vue": "^3.5.22",
+        "vue-router": "^4.0.0"
+    },
+    "devDependencies": {
+        "@quasar/app-vite": "^2.1.0",
+        "autoprefixer": "^10.4.2",
+        "postcss": "^8.4.14"
+    },
+    "engines": {
+        "node": "^24",
+        "npm": ">= 6.13.4"
+    }
+}
