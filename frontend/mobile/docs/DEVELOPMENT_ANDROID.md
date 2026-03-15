@@ -125,7 +125,7 @@ Install [Android Studio](https://developer.android.com/studio).
 
 Start Android Studio. From the Android Studio welcome screen, click on **More Actions** and select **SDK Manager**.
 
-![Welcome to Android Studio - SDK](docs/as-welcome-sdk.jpg)
+![Welcome to Android Studio - SDK](as-welcome-sdk.jpg)
 
 ##### SDK Platforms
 
@@ -134,7 +134,7 @@ In the **SDK Manager**, go to the **SDK Platforms** tab and install the required
 - Android SDK Platform 36
 - Sources for Android 36
 
-![SDK Platforms](docs/as-sdk-platforms.jpg)
+![SDK Platforms](as-sdk-platforms.jpg)
 
 ##### SDK Tools
 
@@ -145,8 +145,8 @@ In the **SDK Manager**, go to the **SDK Tools** tab and install the required too
 - Android SDK Platform-Tools 37.0.0
 - Android Emulator 36.4.10
 
-![SDK Build-Tools](docs/as-sdk-tools-build-tools.jpg)
-![SDK Tools - Other Components](docs/as-sdk-tools-others.jpg)
+![SDK Build-Tools](as-sdk-tools-build-tools.jpg)
+![SDK Tools - Other Components](as-sdk-tools-others.jpg)
 
 ##### Set environment variables
 
@@ -164,9 +164,9 @@ The variable `PATH` should include:
 Create virtual devices to test your application on different Android configurations.
 From the Android Studio welcome screen, click on **More Actions** and select **Virtual Device Manager**.
 
-![Welcome to Android Studio - Virtual Device Manager](docs/as-welcome-vdm.jpg)
+![Welcome to Android Studio - Virtual Device Manager](as-welcome-vdm.jpg)
 
-![Virtual Device Manager](docs/as-vdm.jpg)
+![Virtual Device Manager](as-vdm.jpg)
 
 1. Click **Create Virtual Device** [+]
 2. Select a device definition (e.g., Pixel 9, Pixel 7)
