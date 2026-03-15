@@ -85,14 +85,22 @@ The frontend is built with [Quasar 2](https://quasar.dev) (Vite + Vue 3).
 
 ```
 src/
+├── assets/         # Static assets (images, etc.)
 ├── boot/           # Boot files (axios configuration)
 ├── components/     # Reusable Vue components
 ├── composables/    # Vue 3 Composition API composables
+├── constants/      # Application constants (messages, etc.)
+├── css/            # Global styles
 ├── layouts/        # Page layouts
 ├── pages/          # Page components
 ├── router/         # Vue Router configuration
 ├── services/       # API service layer
 └── utils/          # Utility functions
+
+src-cordova/        # Cordova app
+├── config.xml      # Cordova app configuration
+├── platforms/      # Native platform builds (Android, iOS)
+└── www/            # Built web app for mobile deployment
 ```
 
 
@@ -138,35 +146,6 @@ Expected response:
   "error": null
 }
 ```
-
-### 2. Check out or update the project from the GitHub repository
-
-```bash
-git clone https://github.com/alaska-software/todo-service.git
-cd todo-service/frontend/mobile
-```
-
-
-### 3. Configure the Backend URL in the Frontend
-
-Edit `src/boot/axios.js` to point to the correct backend:
-
-- `http://localhost:9100/` — local development
-- `http://10.0.2.2:9100/` — Android emulator accessing the host machine
-
-### 4. Install Dependencies in the Frontend
-
-```shell script
-npm ci
-```
-
-
-### 5. Start the Frontend Dev Server
-
-```shell script
-quasar dev
-```
-
-## Platform-specific setup and development
+### 2. Set up and start the Frontend
 
 See [DEVELOPMENT_ANDROID.md](docs/DEVELOPMENT_ANDROID.md) and [DEVELOPMENT_MACOS.md](docs/DEVELOPMENT_MACOS.md) for platform-specific instructions.
