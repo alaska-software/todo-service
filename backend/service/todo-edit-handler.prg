@@ -206,21 +206,17 @@ RETURN oData
 /// </remarks>
 ///
 METHOD TodoEditHandler:getTodoItems()
-   LOCAL aData, oResult
+   LOCAL aData
    LOCAL oTDM
 
    oTDM  := TodoDataManager():open()
    aData := oTDM:getAll()
    oTDM:close()
 
-   // extend todoitems with dictionary for editing
-   oResult := DataObject():new()
-
-   oResult:data         := aData
-   oResult:dictionaries := DataObject():new()
-   oResult:dictionaries:states     := TodoItemStates():getAll()
-   oResult:dictionaries:priorities := TodoItemPriorities():getAll()
-RETURN oResult
+   // extend result with dictionary for editing
+   ::addDictionary( "states" ,   TodoItemStates():getAll() )
+   ::addDictionary( "priorities",TodoItemPriorities():getAll() )
+RETURN aData
 
 
 /// <summary>
@@ -265,8 +261,8 @@ METHOD TodoEditHandler:getTodoItemById(nId)
      ENDIF
    ENDIF
 
-   ::setDictionary( "states" ,   TodoItemStates():getAll() )
-   ::setDictionary( "priorities",TodoItemPriorities():getAll() )
+   ::addDictionary( "states" ,   TodoItemStates():getAll() )
+   ::addDictionary( "priorities",TodoItemPriorities():getAll() )
 RETURN oTodoItem
 
 
