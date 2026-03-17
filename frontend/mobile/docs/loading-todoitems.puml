@@ -1,0 +1,64 @@
+@startuml
+'title MyTodoEditor - Loading Todo items
+hide footbox
+skinparam ParticipantPadding 20
+skinparam backgroundColor #fffffe
+
+participant Frontend [
+    Frontend
+    ""REST Client""
+    ----
+    ""Quasar/Cordova""
+]
+participant Backend [
+    Backend
+    ""REST Service""
+    ----
+    ""Xbase++ MSA""
+]
+database DB
+
+Frontend -> Backend: HTTP Request
+note over Frontend, Backend #lightskyblue
+**GET /todoitems**
+end note
+||60||
+Backend -> DB: SELECT * FROM todo-data
+DB --> Backend: DataSet
+||60||
+Backend --> Frontend: HTTP Response
+note over Frontend, Backend
+**200 OK**
+//{//
+    //result: {//
+        //data: [//
+            //{//
+                //id: 1,//
+                //created: "2023-03-02T09:00:03",//
+                //text: "Read 1984 by Orwell",//
+                //changed: "2023-03-22T19:23:00"//
+                //state: "IP"//
+                //priority: "AA"//
+            //},//
+            //...//
+        //],//
+        //dictionaries: {//
+            //states: [//
+                //{//
+                    //id: "IP", name: "In Progress"//
+                //},//
+                //...//
+            //],//
+            //priorities: [//
+                //{//
+                    //id: "AA", name: "high"//
+                //},//
+                //...//
+            //]//
+        //}//
+    //},//
+    //error: null//
+//}//
+end note
+...
+@enduml
