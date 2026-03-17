@@ -278,7 +278,7 @@ RETURN oTodoItem
 /// - text field is not empty
 /// </remarks>
 ///
-METHOD TodoEditHandler:validateTodoItem(oTodoItem)
+METHOD TodoEditHandler:validateTodoItem( oTodoItem )
    IF Len(oTodoItem) != 6 .OR. Empty(oTodoItem:created) .OR. Empty(oTodoItem:text)
      RETURN .F.
    ENDIF
