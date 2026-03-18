@@ -26,13 +26,13 @@ and running the app on Android emulators or physical devices.
     - [4. Set environment variables](#4-set-environment-variables)
 - [Frontend Setup](#frontend-setup)
 - [Run on Android Emulator](#run-on-android-emulator)
-- [Build for Android device](#build-for-android-device)
-- [Install on Android device](#install-on-android-device)
-- [Physical Device Setup](#physical-device-setup)
+- [Run in Browser (Development)](#run-in-browser-development)
+- [Android Device Setup and Installation](#android-device-setup-and-installation)
     - [1. Enable Developer Options](#1-enable-developer-options)
     - [2. Enable USB Debugging](#2-enable-usb-debugging)
     - [3. Connect and Authorize](#3-connect-and-authorize)
     - [4. Verify Connection](#4-verify-connection)
+    - [5. Build and Install on Android device](#5-build-and-install-on-android-device)
 - [Chrome DevTools Debugging](#chrome-devtools-debugging)
 
 ## System Requirements
@@ -170,8 +170,10 @@ From the Android Studio welcome screen, click on **More Actions** and select **V
 
 1. Click **Create Virtual Device** [+]
 2. Select a device definition (e.g., Pixel 9, Pixel 7)
+   ![Virtual Device Type](as-vdm-device-type.png)
 3. Click **Next**
-4. Select a system image (Android 16.0 / API Level 36.0)
+4. Set the name to **android16** and select a system image (Android 16.0 / **API 36.0**)
+   ![Virtual Device configuration](as-vdm-device-config.png)
     - Download the system image if not already installed
 5. Click **Finish**
 
@@ -181,8 +183,7 @@ To verify the emulator is available:
 emulator -list-avds
 ```
 
-This command should list the emulator names you created. If no emulators are listed, return to
-the Device Manager and create at least one virtual device.
+This command should list the emulator **android16** you created.
 
 ## Frontend Setup
 
@@ -268,41 +269,50 @@ All requirements should show as installed/available.
 
 Edit `src/boot/axios.js` to point to the correct Backend:
 
-- `http://localhost:9100/` — local development
-- `http://10.0.2.2:9100/` — Android emulator accessing the host machine
+- `http://10.0.2.2:9100/` — Android emulator accessing the host machine, when running on the same machine as the Backend
+- `http://<backend_ip>:9100/` — remote development, when running on a different machine as the Backend
+
 
 ## Run on Android Emulator
+
+To run the frontend on an Android emulator, use the Quasar CLI with Cordova mode. This will build the app, launch the specified emulator, and install the app automatically.
 
 ```bash
 cd todo-service/frontend/mobile
 
-# Start on default emulator
-quasar dev -m cordova -T android
+# Start on the created emulator android16
+quasar dev -m cordova -T android -e android16
 
 # Or specify emulator name
 quasar dev -m cordova -T android -e <emulator_name>
 ```
 
-## Build for Android device
+The command will:
+1. Build the app in development mode with hot-reload enabled
+2. Launch the Android emulator if it's not already running
+3. Install and run the app on the emulator
+4. Watch for file changes and automatically rebuild the app
+
+**Note:** The first build may take several minutes. Subsequent builds will be faster due to caching.
+
+
+## Run in Browser (Development)
+
+For faster development iteration, the Frontend can be started in the browser:
 
 ```bash
 cd todo-service/frontend/mobile
-
-# Build for Android (debug)
-quasar build -m cordova -T android --debug
+quasar dev
 ```
 
-## Install on Android device
+This will start the development server and open the app in your default browser. The browser mode supports hot-reload, making it ideal for rapid UI development and testing.
 
-```bash
-cd todo-service/frontend/mobile
+**Note:** Configure the Backend URL in `src/boot/axios.js` to `http://localhost:9100/` when running in browser mode.
 
-npm run adb:install
-```
 
-## Physical Device Setup
+## Android Device Setup and Installation
 
-To run the app on a physical Android device:
+To run the Frontend on a physical Android device:
 
 ### 1. Enable Developer Options
 
@@ -330,6 +340,8 @@ Check that your device is recognized:
 adb devices
 ```
 
+Notice the name of your device for the next step. 
+
 ### 5. Build and Install on Android device
 
 ```bash
@@ -338,9 +350,10 @@ cd todo-service/frontend/mobile
 # Build for Android (debug)
 quasar build -m cordova -T android --debug
 
-# Install on Android device
-npm run adb:install
+# Install on Android device or emulator
+adb -s <device-name> install .\dist\cordova\android\apk\debug\app-debug.apk
 ```
+`device-name` is the name of your device. 
 
 
 ## Chrome DevTools Debugging
