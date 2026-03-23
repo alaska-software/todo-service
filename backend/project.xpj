@@ -28,7 +28,6 @@
     DEPENDS_ON           = $(ASSETS_PATH)\rest-helper@0.11
     DEPENDS_ON           = $(ASSETS_PATH)\worker-helper@0.4
     RunParameter         = -exe
-    WorkingDir           = .\run
 // $START-AUTODEPEND
     version.res
     todo-edit-handler.obj
