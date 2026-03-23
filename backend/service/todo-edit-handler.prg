@@ -72,6 +72,7 @@ CLASS METHOD TodoEditHandler:onRegister(oEP)
 
   ::addType( "todoitem", "O" )
   ::addType( "id", "N" )
+  ::setResultMode( "dictionary" )
 
   oEP:map( "GET",    "/todoitems", "/TodoEditHandler/getTodoItems" )
   oEP:map( "GET",    "/todoitems/::id", "/TodoEditHandler/getTodoItemById" )
