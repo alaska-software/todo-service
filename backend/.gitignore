@@ -1,0 +1,17 @@
+# Assets
+.assets/
+
+# Debug folders
+.debug/
+business-logic/.debug/
+service/.debug/
+unit-test/.debug/
+
+# Run
+run/
+
+# Release
+.release/
+
+# Unit tests
+unit-test/
