@@ -141,11 +141,13 @@ In the **SDK Manager**, go to the **SDK Platforms** tab and install the required
 In the **SDK Manager**, go to the **SDK Tools** tab and install the required tools and build components:
 
 - Android SDK Build-Tools 36.0.0
+
+![SDK Build-Tools](as-sdk-tools-build-tools.jpg)
+
 - Android SDK Command-line Tools (latest) 20.0
 - Android SDK Platform-Tools 37.0.0
 - Android Emulator 36.4.10
 
-![SDK Build-Tools](as-sdk-tools-build-tools.jpg)
 ![SDK Tools - Other Components](as-sdk-tools-others.jpg)
 
 ##### Set environment variables
@@ -166,16 +168,20 @@ From the Android Studio welcome screen, click on **More Actions** and select **V
 
 ![Welcome to Android Studio - Virtual Device Manager](as-welcome-vdm.jpg)
 
-![Virtual Device Manager](as-vdm.jpg)
+![Empty Virtual Device Manager](as-vdm-devices-empty.jpg)
 
 1. Click **Create Virtual Device** [+]
 2. Select a device definition (e.g., Pixel 9, Pixel 7)
    ![Virtual Device Type](as-vdm-device-type.png)
 3. Click **Next**
 4. Set the name to **android16** and select a system image (Android 16.0 / **API 36.0**)
-   ![Virtual Device configuration](as-vdm-device-config.png)
-    - Download the system image if not already installed
+   ![Virtual Device configuration](as-vdm-device-config.jpg)
+    - Download the system image if not already installed. It will take a few minutes to download.
 5. Click **Finish**
+6. Start the emulator **android16**. It will take a few minutes to start up.
+   ![Virtual Device Manager](as-vdm.jpg) 
+   ![Emulator](emulator_new.jpg)
+7. Close the emulator
 
 To verify the emulator is available:
 
@@ -295,6 +301,7 @@ The command will:
 
 **Note:** The first build may take several minutes. Subsequent builds will be faster due to caching.
 
+![Emulator](mobile-app.jpg)
 
 ## Run in Browser (Development)
 
