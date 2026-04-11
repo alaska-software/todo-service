@@ -14,7 +14,7 @@ This repository contains:
 ### Backend Setup
 ```bash
 cd backend
-xar PROJECT -install
+xppam PROJECT -install
 pbuild -a
 cd run
 create-table.exe
