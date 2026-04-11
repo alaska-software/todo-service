@@ -49,7 +49,7 @@ cd frontend/mobile
 ## Tech Stack
 
 **Backend**:
-- Alaska Software Xbase++ MSA Framework
+- Alaska Software Xbase++ 3.0 Enterprise Edition
 - Automated REST routing and type conversion
 - Built-in health monitoring and process resilience
 
