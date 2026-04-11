@@ -22,13 +22,12 @@
     INTERMEDIATE_RELEASE = .release
     POST_BUILD           = copy todo-service.exe.config ..\run
     DEPENDS_ON           = business-logic\todo-manager.dll
-    DEPENDS_ON           = $(ASSETS_PATH)\configuration-manager@0.8
-    DEPENDS_ON           = $(ASSETS_PATH)\console-helper@0.11
-    DEPENDS_ON           = $(ASSETS_PATH)\microservice-core@0.14
-    DEPENDS_ON           = $(ASSETS_PATH)\rest-helper@0.11
-    DEPENDS_ON           = $(ASSETS_PATH)\worker-helper@0.4
+    DEPENDS_ON           = $(ASSETS_PATH)\configuration-manager
+    DEPENDS_ON           = $(ASSETS_PATH)\console-helper
+    DEPENDS_ON           = $(ASSETS_PATH)\microservice-core
+    DEPENDS_ON           = $(ASSETS_PATH)\rest-helper
+    DEPENDS_ON           = $(ASSETS_PATH)\worker-helper
     RunParameter         = -exe
-    WorkingDir           = .\run
 // $START-AUTODEPEND
     version.res
     todo-edit-handler.obj

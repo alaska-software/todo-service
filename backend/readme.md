@@ -12,11 +12,12 @@ The todo microservice uses the Alaska Software MSA to get the following features
 - Type mapping, automated input/output type conversion for your REST interfaces
 
 # Build and Run
-- `xar PROJECT -install` to install all dependencies/assets
+- `cd todo-service\backend` to navigate to the project directory
+- `xppam PROJECT -install` to install all dependencies/assets
 - `pbuild -a` to build the project
 - `cd run` to navigate to the run directory
 - `create-table.exe` to create the test data
-- `todo-service.exe -exe` to start the service
+- `todo-service.exe -exe` to start the service. Allow access through the firewall.
 - Try out `curl http://localhost:9100/todoitems` or `curl http://localhost:9100/todoitems/1`
 - Try out Postman collection located at `unit-test/TodoItemService.postman_collection.json`
 - Run `todo-service.exe` without arguments for more options
